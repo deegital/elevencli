@@ -23,6 +23,18 @@ archives:
       - goos: windows
         format: zip
 
+brews:
+  - repository:
+      owner: deegital
+      name: homebrew-tap
+    homepage: "https://github.com/deegital/elevencli"
+    description: "ElevenLabs CLI — text-to-speech and sound effects from the command line"
+    license: "MIT"
+    install: |
+      bin.install "elevencli"
+    test: |
+      system "#{bin}/elevencli", "--version"
+
 changelog:
   sort: asc
   filters:
