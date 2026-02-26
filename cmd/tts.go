@@ -13,6 +13,8 @@ var (
 	ttsOutput string
 	ttsFormat string
 	ttsModel  string
+	ttsStdin  bool
+	ttsStdout bool
 )
 
 // formatMap maps user-friendly format names to ElevenLabs API format strings.
@@ -30,11 +32,15 @@ func resolveFormat(f string) (string, error) {
 }
 
 var ttsCmd = &cobra.Command{
-	Use:   "tts <text>",
+	Use:   "tts [text]",
 	Short: "Generate speech from text",
 	Long:  `Generate speech from text using ElevenLabs text-to-speech API.`,
-	Args:  cobra.ExactArgs(1),
+	Args:  cobra.RangeArgs(0, 1),
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := validateStdinArgs(cmd, args, ttsStdin, ttsStdout); err != nil {
+			return err
+		}
+
 		if ttsVoice == "" {
 			return fmt.Errorf("--voice is required. Use 'elevencli voices' to list available voices")
 		}
@@ -44,22 +50,22 @@ var ttsCmd = &cobra.Command{
 			return err
 		}
 
+		text, err := readTextFromStdinOrArg(ttsStdin, args)
+		if err != nil {
+			return err
+		}
+
 		fmt.Fprintf(os.Stderr, "Generating speech...\n")
 
 		audio, err := client.TextToSpeech(ttsVoice, elevenlabs.TextToSpeechRequest{
-			Text:    args[0],
+			Text:    text,
 			ModelID: ttsModel,
 		}, elevenlabs.OutputFormat(apiFormat))
 		if err != nil {
 			return fmt.Errorf("TTS request failed: %w", err)
 		}
 
-		if err := os.WriteFile(ttsOutput, audio, 0644); err != nil {
-			return fmt.Errorf("failed to write %s: %w", ttsOutput, err)
-		}
-
-		fmt.Println(ttsOutput)
-		return nil
+		return writeOutput(audio, ttsOutput, ttsStdout)
 	},
 }
 
@@ -68,6 +74,8 @@ func init() {
 	ttsCmd.Flags().StringVarP(&ttsOutput, "output", "o", "output.mp3", "Output file path")
 	ttsCmd.Flags().StringVarP(&ttsFormat, "format", "f", "mp3", "Output format: mp3, pcm, ulaw")
 	ttsCmd.Flags().StringVarP(&ttsModel, "model", "m", "eleven_multilingual_v2", "Model ID")
+	ttsCmd.Flags().BoolVar(&ttsStdin, "stdin", false, "Read text from stdin")
+	ttsCmd.Flags().BoolVar(&ttsStdout, "stdout", false, "Write audio to stdout")
 	_ = ttsCmd.MarkFlagRequired("voice")
 	rootCmd.AddCommand(ttsCmd)
 }

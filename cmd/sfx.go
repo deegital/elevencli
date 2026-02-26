@@ -15,6 +15,8 @@ var (
 	sfxOutput   string
 	sfxDuration float64
 	sfxFormat   string
+	sfxStdin    bool
+	sfxStdout   bool
 )
 
 type soundGenRequest struct {
@@ -23,10 +25,14 @@ type soundGenRequest struct {
 }
 
 var sfxCmd = &cobra.Command{
-	Use:   "sfx <prompt>",
+	Use:   "sfx [prompt]",
 	Short: "Generate a sound effect from a text description",
-	Args:  cobra.ExactArgs(1),
+	Args:  cobra.RangeArgs(0, 1),
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := validateStdinArgs(cmd, args, sfxStdin, sfxStdout); err != nil {
+			return err
+		}
+
 		apiFormat, err := resolveFormat(sfxFormat)
 		if err != nil {
 			return err
@@ -37,7 +43,12 @@ var sfxCmd = &cobra.Command{
 			return err
 		}
 
-		req := soundGenRequest{Text: args[0]}
+		prompt, err := readTextFromStdinOrArg(sfxStdin, args)
+		if err != nil {
+			return err
+		}
+
+		req := soundGenRequest{Text: prompt}
 		if sfxDuration > 0 {
 			req.DurationSeconds = sfxDuration
 		}
@@ -73,12 +84,7 @@ var sfxCmd = &cobra.Command{
 			return fmt.Errorf("failed to read response: %w", err)
 		}
 
-		if err := os.WriteFile(sfxOutput, audio, 0644); err != nil {
-			return fmt.Errorf("failed to write %s: %w", sfxOutput, err)
-		}
-
-		fmt.Println(sfxOutput)
-		return nil
+		return writeOutput(audio, sfxOutput, sfxStdout)
 	},
 }
 
@@ -86,5 +92,7 @@ func init() {
 	sfxCmd.Flags().StringVarP(&sfxOutput, "output", "o", "output.mp3", "Output file path")
 	sfxCmd.Flags().Float64VarP(&sfxDuration, "duration", "d", 0, "Duration in seconds (0.5-30)")
 	sfxCmd.Flags().StringVarP(&sfxFormat, "format", "f", "mp3", "Output format: mp3, pcm, ulaw")
+	sfxCmd.Flags().BoolVar(&sfxStdin, "stdin", false, "Read prompt from stdin")
+	sfxCmd.Flags().BoolVar(&sfxStdout, "stdout", false, "Write audio to stdout")
 	rootCmd.AddCommand(sfxCmd)
 }

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- `--stdin` flag for `tts`, `sfx`, and `audiobook` commands to read input from stdin
+- `--stdout` flag for `tts`, `sfx`, and `audiobook` commands to write audio data to stdout
+
 ## [0.1.1] - 2026-02-26
 
 ### Added
