@@ -1,0 +1,12 @@
+# Binary
+elevencli
+
+# Audio output
+*.mp3
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
