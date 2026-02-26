@@ -1,12 +1,10 @@
 ```
-     _ _                      _ _
- ___| | | _____   _____ _ __ | (_)
-/ _ \ | |/ _ \ \ / / _ \ '_ \| | |
-|  __/ | |  __/\ V /  __/ | | | | |
-\___|_|_|\___| \_/ \___|_| |_|_|_|
+█▀▀ █   █▀▀ █  █ █▀▀ █▄  █ █▀▀ █   ▀█▀
+█▀▀ █   █▀▀ ▀▄▄▀ █▀▀ █ █ █ █   █    █
+▀▀▀ ▀▀▀ ▀▀▀  ▀▀  ▀▀▀ ▀  ▀▀ ▀▀▀ ▀▀▀ ▀▀▀
 ```
 
-ElevenLabs CLI — text-to-speech and sound effects from the command line.
+ElevenLabs CLI by — text-to-speech and sound effects from the command line.
 
 ## Features
 
