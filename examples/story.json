@@ -1,0 +1,43 @@
+{
+  "blocks": [
+    {
+      "type": "tts",
+      "voice": "JBFqnCBsd6RMkjVDRZzb",
+      "text": "Once upon a time, in a land far away, there lived a young traveler who dreamed of the sea.",
+      "model": "eleven_multilingual_v2",
+      "stability": 0.5,
+      "similarity_boost": 0.75
+    },
+    {
+      "type": "sfx",
+      "text": "gentle ocean waves crashing on a sandy beach",
+      "background": true,
+      "duration": 8.0
+    },
+    {
+      "type": "tts",
+      "voice": "pNInz6obpgDQGcFmaJgB",
+      "text": "Every morning he would walk to the shore and listen to the waves, imagining what lay beyond the horizon."
+    },
+    {
+      "type": "silence",
+      "duration": 1.5
+    },
+    {
+      "type": "sfx",
+      "text": "thunder rumbling in the distance with light rain"
+    },
+    {
+      "type": "tts",
+      "voice": "JBFqnCBsd6RMkjVDRZzb",
+      "text": "But one evening, a storm rolled in, and everything changed.",
+      "stability": 0.3,
+      "similarity_boost": 0.8,
+      "style": 0.4
+    },
+    {
+      "type": "silence",
+      "duration": 2.0
+    }
+  ]
+}

@@ -9,5 +9,8 @@ elevencli.exe
 .idea/
 .vscode/
 
+# Release
+dist/
+
 # OS
 .DS_Store
