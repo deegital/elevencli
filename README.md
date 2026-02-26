@@ -15,11 +15,20 @@ ElevenLabs CLI by — text-to-speech and sound effects from the command line.
 
 ## Installation
 
+### Homebrew (recommended)
+
+```sh
+brew tap deegital/tap
+brew install elevencli
+```
+
+### Go
+
 ```sh
 go install github.com/deegital/elevencli@latest
 ```
 
-Or build from source:
+### Build from source
 
 ```sh
 git clone https://github.com/deegital/elevencli.git
