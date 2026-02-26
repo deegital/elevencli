@@ -19,3 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Configuration via environment variable, flag, or `~/.elevencli.yaml`
 - Cross-platform builds (macOS, Linux, Windows) via goreleaser
 - Homebrew tap installation support
+
+### Fixed
+
+- Use dedicated token for goreleaser Homebrew tap push
