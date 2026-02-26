@@ -19,9 +19,17 @@ var (
 	client        *elevenlabs.Client
 )
 
+var banner = `
+█▀▀ █   █▀▀ █  █ █▀▀ █▄  █ █▀▀ █   ▀█▀
+█▀▀ █   █▀▀ ▀▄▄▀ █▀▀ █ █ █ █   █    █
+▀▀▀ ▀▀▀ ▀▀▀  ▀▀  ▀▀▀ ▀  ▀▀ ▀▀▀ ▀▀▀ ▀▀▀
+
+ElevenLabs CLI — text-to-speech and sound effects from the command line`
+
 var rootCmd = &cobra.Command{
 	Use:     "elevencli",
 	Short:   "ElevenLabs CLI — text-to-speech and sound effects from the command line",
+	Long:    banner,
 	Version: version,
 	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
 		config.Init()
