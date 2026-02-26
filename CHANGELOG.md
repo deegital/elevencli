@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Migrate goreleaser config to fix deprecation warnings: `format` → `formats` (v2.6), `brews` → `homebrew_casks` (v2.10)
+
 ## [0.1.0] - 2026-02-26
 
 ### Added

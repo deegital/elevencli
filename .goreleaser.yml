@@ -17,24 +17,25 @@ builds:
         goarch: arm64
 
 archives:
-  - format: tar.gz
+  - formats:
+      - tar.gz
     name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
     format_overrides:
       - goos: windows
-        format: zip
+        formats:
+          - zip
 
-brews:
-  - repository:
+homebrew_casks:
+  - name: elevencli
+    binaries:
+      - elevencli
+    directory: Casks
+    repository:
       owner: deegital
       name: homebrew-tap
       token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
     homepage: "https://github.com/deegital/elevencli"
     description: "ElevenLabs CLI — text-to-speech and sound effects from the command line"
-    license: "MIT"
-    install: |
-      bin.install "elevencli"
-    test: |
-      system "#{bin}/elevencli", "--version"
 
 changelog:
   sort: asc
