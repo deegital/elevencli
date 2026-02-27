@@ -4,7 +4,7 @@
 ▀▀▀ ▀▀▀ ▀▀▀  ▀▀  ▀▀▀ ▀  ▀▀ ▀▀▀ ▀▀▀ ▀▀▀
 ```
 
-ElevenLabs CLI by — text-to-speech and sound effects from the command line.
+An inoffical ElevenLabs CLI helper — text-to-speech, sound effects and audiobooks from the command line.
 
 ## Features
 

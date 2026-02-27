@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-02-27
+
 ### Added
 
 - `--stdin` flag for `tts`, `sfx`, and `audiobook` commands to read input from stdin
@@ -14,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 
-- macOS Gatekeeper warning ("Apple could not verify") when running elevencli installed via Homebrew
+- macOS Gatekeeper warning ("Apple could not verify") when running elevencli installed via Homebrew — binaries are now signed with Developer ID and notarized with Apple
 
 ## [0.1.1] - 2026-02-26
 
