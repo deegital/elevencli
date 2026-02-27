@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `--stdin` flag for `tts`, `sfx`, and `audiobook` commands to read input from stdin
 - `--stdout` flag for `tts`, `sfx`, and `audiobook` commands to write audio data to stdout
 
+### Fixed
+
+- macOS Gatekeeper warning ("Apple could not verify") when running elevencli installed via Homebrew
+
 ## [0.1.1] - 2026-02-26
 
 ### Added
